@@ -1,0 +1,200 @@
+Python 3.7.1 (v3.7.1:260ec2c36a, Oct 20 2018, 14:05:16) [MSC v.1915 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> 
+>>> # слайд 25 - построчное чтение файла
+>>> import os
+>>> os.getcwd() # cwd = current working directory
+'C:\\Python'
+>>> dir(os)
+['DirEntry', 'F_OK', 'MutableMapping', 'O_APPEND', 'O_BINARY', 'O_CREAT', 'O_EXCL', 'O_NOINHERIT', 'O_RANDOM', 'O_RDONLY', 'O_RDWR', 'O_SEQUENTIAL', 'O_SHORT_LIVED', 'O_TEMPORARY', 'O_TEXT', 'O_TRUNC', 'O_WRONLY', 'P_DETACH', 'P_NOWAIT', 'P_NOWAITO', 'P_OVERLAY', 'P_WAIT', 'PathLike', 'R_OK', 'SEEK_CUR', 'SEEK_END', 'SEEK_SET', 'TMP_MAX', 'W_OK', 'X_OK', '_Environ', '__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', '_execvpe', '_exists', '_exit', '_fspath', '_get_exports_list', '_putenv', '_unsetenv', '_wrap_close', 'abc', 'abort', 'access', 'altsep', 'chdir', 'chmod', 'close', 'closerange', 'cpu_count', 'curdir', 'defpath', 'device_encoding', 'devnull', 'dup', 'dup2', 'environ', 'error', 'execl', 'execle', 'execlp', 'execlpe', 'execv', 'execve', 'execvp', 'execvpe', 'extsep', 'fdopen', 'fsdecode', 'fsencode', 'fspath', 'fstat', 'fsync', 'ftruncate', 'get_exec_path', 'get_handle_inheritable', 'get_inheritable', 'get_terminal_size', 'getcwd', 'getcwdb', 'getenv', 'getlogin', 'getpid', 'getppid', 'isatty', 'kill', 'linesep', 'link', 'listdir', 'lseek', 'lstat', 'makedirs', 'mkdir', 'name', 'open', 'pardir', 'path', 'pathsep', 'pipe', 'popen', 'putenv', 'read', 'readlink', 'remove', 'removedirs', 'rename', 'renames', 'replace', 'rmdir', 'scandir', 'sep', 'set_handle_inheritable', 'set_inheritable', 'spawnl', 'spawnle', 'spawnv', 'spawnve', 'st', 'startfile', 'stat', 'stat_result', 'statvfs_result', 'strerror', 'supports_bytes_environ', 'supports_dir_fd', 'supports_effective_ids', 'supports_fd', 'supports_follow_symlinks', 'symlink', 'sys', 'system', 'terminal_size', 'times', 'times_result', 'truncate', 'umask', 'uname_result', 'unlink', 'urandom', 'utime', 'waitpid', 'walk', 'write']
+>>> os.chdir(r"C:\Users\slukashenko\Office\Лекции в IT-школе\Lesson 8\Scripts")
+>>> os.getcwd()
+'C:\\Users\\slukashenko\\Office\\Лекции в IT-школе\\Lesson 5\\Scripts'
+>>> file_handler = open("Data/poem_file.txt")
+>>> file_handler
+<_io.TextIOWrapper name='Data/poem_file.txt' mode='r' encoding='cp1251'>
+>>> file_handler.mode
+'r'
+>>> file_handler.readable()
+True
+>>> line = file_handler.readline()
+>>> line
+'Осенняя песенка\n'
+>>> while line:
+	line = file_handler.readline()
+	print(line)
+
+	
+
+
+Миновало лето, 
+
+Осень наступила. 
+
+На полях и в рощах 
+
+Пусто и уныло. 
+
+
+
+Птички улетели, 
+
+Стали дни короче, 
+
+Солнышка не видно, 
+
+Тёмны, тёмны ночи.
+
+
+
+- А. Плещеев
+
+
+>>> file_handler.seek(0)   # установить указатель на начало файла
+0
+>>> line = file_handler.readline()
+>>> print(line, end='')
+Осенняя песенка
+>>> while line:
+	line = file_handler.readline()
+	print(line, end='')
+
+	
+
+Миновало лето, 
+Осень наступила. 
+На полях и в рощах 
+Пусто и уныло. 
+
+Птички улетели, 
+Стали дни короче, 
+Солнышка не видно, 
+Тёмны, тёмны ночи.
+
+- А. Плещеев
+>>> file_handler.close()
+>>> 
+>>> # слайд 26 - чтение файла полностью за один раз
+>>> file_once = open("Data/poem_file.txt")
+>>> content = file_once.read()
+>>> content
+'Осенняя песенка\n\nМиновало лето, \nОсень наступила. \nНа полях и в рощах \nПусто и уныло. \n\nПтички улетели, \nСтали дни короче, \nСолнышка не видно, \nТёмны, тёмны ночи.\n\n- А. Плещеев\n'
+>>> print(content)
+Осенняя песенка
+
+Миновало лето, 
+Осень наступила. 
+На полях и в рощах 
+Пусто и уныло. 
+
+Птички улетели, 
+Стали дни короче, 
+Солнышка не видно, 
+Тёмны, тёмны ночи.
+
+- А. Плещеев
+
+>>> file_once.close()
+>>> 
+>>> # слайд 27 - итерации по файлу как по упорядоченной коллекции строк
+>>> file_for = open("Data/poem_file.txt")
+>>> for line in file_for:
+	print(line)
+
+	
+Осенняя песенка
+
+
+
+Миновало лето, 
+
+Осень наступила. 
+
+На полях и в рощах 
+
+Пусто и уныло. 
+
+
+
+Птички улетели, 
+
+Стали дни короче, 
+
+Солнышка не видно, 
+
+Тёмны, тёмны ночи.
+
+
+
+- А. Плещеев
+
+>>> file_for.seek(0)
+0
+>>> for line in file_for:
+	print(line, end='')
+
+	
+Осенняя песенка
+
+Миновало лето, 
+Осень наступила. 
+На полях и в рощах 
+Пусто и уныло. 
+
+Птички улетели, 
+Стали дни короче, 
+Солнышка не видно, 
+Тёмны, тёмны ночи.
+
+- А. Плещеев
+>>> 
+>>> # слайд 28 - чтение файла в список
+>>> file_list = open("Data/poem_file.txt")
+>>> lines = file_list.readlines()
+>>> lines
+['Осенняя песенка\n', '\n', 'Миновало лето, \n', 'Осень наступила. \n', 'На полях и в рощах \n', 'Пусто и уныло. \n', '\n', 'Птички улетели, \n', 'Стали дни короче, \n', 'Солнышка не видно, \n', 'Тёмны, тёмны ночи.\n', '\n', '- А. Плещеев\n']
+>>> for row in lines:
+	print(row, end='')
+
+	
+Осенняя песенка
+
+Миновало лето, 
+Осень наступила. 
+На полях и в рощах 
+Пусто и уныло. 
+
+Птички улетели, 
+Стали дни короче, 
+Солнышка не видно, 
+Тёмны, тёмны ночи.
+
+- А. Плещеев
+>>> file_list.close()
+>>> 
+>>> # слайд 29 - сохранение копии файла в другой файл
+>>> from tkinter import filedialog as fd
+>>> from_file_name = fd.askopenfilename()
+>>> from_file_name
+'C:/Users/slukashenko/Office/Лекции в IT-школе/Lesson 8/Scripts/Data/poem_file.txt'
+>>> type(from_file_name)
+<class 'str'>
+>>> from_file = open(from_file_name)
+>>> from_file
+<_io.TextIOWrapper name='C:/Users/slukashenko/Office/Лекции в IT-школе/Lesson 5/Scripts/Data/poem_file.txt' mode='r' encoding='cp1251'>
+>>> type(from_file)
+<class '_io.TextIOWrapper'>
+>>> to_file_name = fd.asksaveasfilename()
+>>> to_file_name
+'C:/Users/slukashenko/Office/Лекции в IT-школе/Lesson 5/Scripts/Data/poem_copy.txt'
+>>> # открыть новый файл для записи
+>>> # если файл с таким именем существует,
+>>> # то он перезапишется
+>>> to_file = open(to_file_name, 'w')
+>>> to_file.write("Копия\n")
+6
+>>> to_file.write(from_file.read())
+177
+>>> from_file.close()
+>>> to_file.close()
+>>> 
